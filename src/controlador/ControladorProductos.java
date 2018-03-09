@@ -70,6 +70,51 @@ public class ControladorProductos extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
+	
+		//leer parametro que llega desde formulario (hidden input)
+		String elParametro=request.getParameter("instruccion");
+		
+		
+		
+		//si no se envia el parametro, listar productos
+		if(elParametro==null)elParametro="listar";
+		
+		
+		//redirigir flijo de ejecucion adecuado
+		
+		switch(elParametro) {
+		case "listar":	obtenerProductos(request, response);break;
+		case"instruccion": agregarProductos(request, response);break;
+		default: obtenerProductos(request, response);break;
+		}
+		
+	
+	}
+
+
+	
+	private void agregarProductos(HttpServletRequest request, HttpServletResponse response) {
+		
+			//leer info que llega desde el formulario
+		
+			//crear objeto de tipo producto
+		
+			//enviar el objeto al modelo y despues insertar el objeto Producto en la base de datos
+		
+			//volveer al listado de productos
+		
+		
+		
+		
+	}
+
+
+
+
+
+
+	private void obtenerProductos(HttpServletRequest request, HttpServletResponse response) {
+	
 		//obtener la lista de productos desde el modelo
 		
 		List<Productos> productos;
@@ -92,9 +137,12 @@ public class ControladorProductos extends HttpServlet {
 			e.printStackTrace();
 			
 		}
-	
-	
 	}
+
+
+
+
+
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

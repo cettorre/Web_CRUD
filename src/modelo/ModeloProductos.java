@@ -9,6 +9,8 @@ import java.util.List;
 
 import javax.sql.DataSource;
 import beans.*;
+import controlador.*;
+import modelo.*;
 
 public class ModeloProductos {
 	
@@ -31,6 +33,7 @@ public class ModeloProductos {
 		
 		miConexion=origenDatos.getConnection();
 		String instruccionSql="SELECT * FROM PRODUCTOS";
+		miStatement=miConexion.createStatement();
 		miResultset=miStatement.executeQuery(instruccionSql);//tabla virtual obtenida
 		
 		while(miResultset.next()) {
@@ -40,7 +43,7 @@ public class ModeloProductos {
 			double precio=miResultset.getDouble("PRECIO");
 			Date fecha=miResultset.getDate("FECHA");
 			String importado=miResultset.getString("IMPORTADO");
-			String pOrigen=miResultset.getString("PAÍSORIGEN");
+			String pOrigen=miResultset.getString("PAÍSDEORIGEN");
 			
 			Productos temProd = new Productos(cArt, seccion, nArt, precio, fecha, importado, pOrigen);
 			

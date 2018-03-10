@@ -53,5 +53,18 @@ public class ModeloProductos {
 		return productos; 
 		
 	}
+
+
+	public void agregarElNuevoProducto(Productos nuevoProducto) {
+		//obtener conexion BBDD
+		
+		//Crear insert SQL
+		
+		//Establecer parametros para productopara almacenar info en instruccion sql
+		
+		//ejecutar instruccion SQL
+		
+		
+	}
 	
 }

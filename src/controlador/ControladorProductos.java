@@ -87,8 +87,9 @@ public class ControladorProductos extends HttpServlet {
 		
 		switch(elParametro) {
 		case "listar":	obtenerProductos(request, response);break;
-		case"instruccion": agregarProductos(request, response);break;
-		default: obtenerProductos(request, response);break;
+		case "instruccion": agregarProductos(request, response);break;
+		default: try {throw new Exception(); } catch (Exception e) {e.printStackTrace();	}
+		//default: obtenerProductos(request, response);break;
 		}
 		
 	
@@ -113,8 +114,9 @@ public class ControladorProductos extends HttpServlet {
 		String Importado=request.getParameter("element_6");
 		String PaisOrigen=request.getParameter("element_7");
 		
+		
 			//crear objeto de tipo producto
-		Productos nuevoProducto=new Productos(CodArticlulo,  Seccion, NombreArticulo, Precio, Fecha, Importado, PaisOrigen);
+		Productos nuevoProducto=new Productos(CodArticlulo, Seccion, NombreArticulo, Precio, Fecha, Importado, PaisOrigen);
 		
 				
 		

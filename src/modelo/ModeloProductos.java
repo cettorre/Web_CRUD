@@ -1,13 +1,16 @@
 package modelo;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import javax.sql.DataSource;
+
 import beans.*;
 import controlador.*;
 import modelo.*;
@@ -58,12 +61,44 @@ public class ModeloProductos {
 	public void agregarElNuevoProducto(Productos nuevoProducto) {
 		//obtener conexion BBDD
 		
-		//Crear insert SQL
+		Connection miConexion=null;
+		PreparedStatement miStatement=null;
+				
+				try {
+					miConexion=origenDatos.getConnection();
+			
 		
+		
+		//Crear insert SQL y prepared statement
+		
+String sql="INSERT INTO PRODUCTOS (CÓDIGOARTÍCULO, SECCIÓN, NOMBREARTÍCULO, PRECIO, FECHA, IMPORTADO, PAÍSDEORIGEN)" +
+"VALUES(?,?,?,?,?,?,?)";
+		
+		miStatement=miConexion.prepareStatement(sql);
+	
+				
 		//Establecer parametros para productopara almacenar info en instruccion sql
 		
-		//ejecutar instruccion SQL
+		miStatement.setString(1, nuevoProducto.getcArt());
+		miStatement.setString(2, nuevoProducto.getSeccion());
+		miStatement.setString(3, nuevoProducto.getnArt());
+		miStatement.setDouble(4, nuevoProducto.getPrecio());
 		
+		//setDate nos devuleve tipo java.sql.Date mientras que nuestro objeto teiene java.util.Date 
+		java.util.Date utilDAte=nuevoProducto.getFecha();
+		java.sql.Date fechaConvertida=new java.sql.Date(utilDAte.getTime());
+		miStatement.setDate(5, fechaConvertida);
+		
+		miStatement.setString(6, nuevoProducto.getImportado());
+		miStatement.setString(7, nuevoProducto.getpOrigen());
+		
+		//ejecutar instruccion SQL
+		miStatement.execute();
+		
+		
+		
+			}catch(Exception e) {e.printStackTrace();
+		}
 		
 	}
 	

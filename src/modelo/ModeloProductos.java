@@ -101,5 +101,45 @@ String sql="INSERT INTO PRODUCTOS (CÓDIGOARTÍCULO, SECCIÓN, NOMBREARTÍCULO, 
 		}
 		
 	}
+
+
+	public Productos getProducto(String codigoArticulo) {
+		Productos elProducto=null;
+		Connection miConnection=null;
+		PreparedStatement miPreparedStatement=null;
+		ResultSet miResultSet=null;
+		String cArticulo=codigoArticulo;
+		
+	try {
+		//conexion
+		miConnection=origenDatos.getConnection();
+		//sql
+		String sql="SELECT * FROM PRODUCTOS WHERE CÓDIGOARTÍCULO=?";
+		//prepared statement
+		miPreparedStatement=miConnection.prepareStatement(sql);
+		miPreparedStatement.setString(1, cArticulo);
+		//ejecutar consulta
+		miPreparedStatement.executeQuery();
+		
+		//obtener datos respuesta
+		if(miResultSet.next()) {
+			
+			String seccion=miResultSet.getString("SECCIÓN");
+			String nArt=miResultSet.getString("NOMBREARTÍCULO");
+			double precio=miResultSet.getDouble("PRECIO");
+			Date fecha=miResultSet.getDate("FECHA");
+			String importado=miResultSet.getString("IMPORTADO");
+			String pOrigen=miResultSet.getString("PAÍSDEORIGEN");
+			
+			elProducto = new Productos(seccion, nArt, precio, fecha, importado, pOrigen);
+		}else {
+			throw new Exception("No hemos encontrado el producto con código articulo"+cArticulo);
+		}
+		
+
+	}catch(Exception e) {e.printStackTrace();}
+		
+		return elProducto;
+	}
 	
 }

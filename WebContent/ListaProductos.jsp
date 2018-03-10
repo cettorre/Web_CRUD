@@ -25,13 +25,39 @@
 	background-color: #ccffcc
 	}
 table{
+/*	float: right;*/
+}
+
+#contenedor_boton_{
+	/*margin-left: 1000px*/
 	float: left;
 }
-/*
-#contenedor_boton_{
-	margin-left: 1000px
+
+.btn {
+  background: #3498db;
+  background-image: -webkit-linear-gradient(top, #3498db, #2980b9);
+  background-image: -moz-linear-gradient(top, #3498db, #2980b9);
+  background-image: -ms-linear-gradient(top, #3498db, #2980b9);
+  background-image: -o-linear-gradient(top, #3498db, #2980b9);
+  background-image: linear-gradient(to bottom, #3498db, #2980b9);
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 28px;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 20px;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
 }
-*/
+
+.btn:hover {
+  background: #3cb0fd;
+  background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+  text-decoration: none;
 
 </style>
 
@@ -41,19 +67,34 @@ table{
 
 <body>
 
-<table cellspacing="0" border="1" cellpadding="5">
+<div id="contenedor_boton">
+
+<input class="btn" type="button" value="Añadir Registro" onclick="window.location.href='inserta_producto.jsp'"/>
+
+
+</div>
+
+<table cellspacing="0" cellpadding="3">
 
 <tr>
 <td class="cabecera" >Códigp articulo</td>
 <td class="cabecera" >Sección</td>
 <td class="cabecera" >Nombre Artículo</td>
 <td class="cabecera" >Fecha</td>
-<td class="cabecera" >precio</td>
-<td class="cabecera" >importado</td>
-<td class="cabecera" >país de origen</td>
+<td class="cabecera" >Precio</td>
+<td class="cabecera" >Importado</td>
+<td class="cabecera" >País de origen</td>
+<td class="cabecera" >Acción</td>
 </tr>
 
 <c:forEach var="tempProd" items="${LISTAPRODUCTOS}">
+
+<!--!LINK PARA CADA PRODUCTO CON SU CAMPO CLAVE -->
+<c:url var="linkTemp" value="ControladorProductos">
+	<c:param name="instruccion" value="cargar"></c:param>
+	<c:param name="CArticulo" value="${tempProd.cArt}"></c:param>
+</c:url>
+
 
 <tr>
 <td class="filas">${tempProd.cArt}</td>
@@ -63,18 +104,14 @@ table{
 <td class="filas">${tempProd.precio}</td>
 <td class="filas">${tempProd.importado}</td>
 <td class="filas">${tempProd.pOrigen}</td>
+<td class="filas"><a href="${linkTemp }">actualizar</a></td>
 </tr>
 
 </c:forEach>
 
 </table>
 
-<div id="contenedor_boton">
 
-<input type="button" value="Insertar Registro" onclick="window.location.href='inserta_producto.jsp'"/>
-
-
-</div>
 
 </body>
 </html>

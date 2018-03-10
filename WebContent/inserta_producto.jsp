@@ -23,8 +23,8 @@
 					<div class="form_description">
 		<input type="hidden" name="instruccion" value="instruccion">			
 					
-			<h2>Insertar productos</h2>
-			<p>Inserta la informacion de los productos para añadir un registro a la tabla</p>
+			<h2>Agregar productos</h2>
+			<p>Introduce la informacion de los productos para añadir un registro a la tabla</p>
 		</div>						
 			<ul >
 			
@@ -49,7 +49,7 @@
 			<input id="element_4" name="element_4" class="element text medium" type="text" maxlength="255" value=""/> 
 		</div><p class="guidelines" id="guide_4"><small>insert date</small></p> 
 		</li>		<li id="li_5" >
-		<label class="description" for="element_5">precio </label>
+		<label class="description" for="element_5">Precio </label>
 		<div>
 			<input id="element_5" name="element_5" class="element text medium" type="text" maxlength="255" value=""/> 
 		</div><p class="guidelines" id="guide_5"><small>insert article price</small></p> 
@@ -59,7 +59,7 @@
 			<input id="element_6" name="element_6" class="element text medium" type="text" maxlength="255" value=""/> 
 		</div> 
 		</li>		<li id="li_7" >
-		<label class="description" for="element_7">pais de origen </label>
+		<label class="description" for="element_7">Pais de origen </label>
 		<div>
 			<input id="element_7" name="element_7" class="element text medium" type="text" maxlength="255" value=""/> 
 		</div> 

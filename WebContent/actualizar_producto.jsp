@@ -21,7 +21,7 @@
 		<h1><a>Actualizar productos</a></h1>
 		<form id="form_74820" class="appnitro"  method="get" action="ControladorProductos">
 					<div class="form_description">
-		<input type="hidden" name="instruccion" value="cargar">	
+		<input type="hidden" name="instruccion" value="actualizarBBDD">	
 		<input type="hidden" name="CArt" value="${ProductoActualizar.cArt }">		<!-- 261 -->	
 					
 			<h2>Actualizar productos</h2>

@@ -21,7 +21,7 @@
 		<h1><a>Insertar productos</a></h1>
 		<form id="form_74820" class="appnitro"  method="get" action="ControladorProductos">
 					<div class="form_description">
-		<input type="hidden" name="instruccion" value="instruccion">			
+		<input type="hidden" name="instruccion" value="insertarBBDD">			
 					
 			<h2>Agregar productos</h2>
 			<p>Introduce la informacion de los productos para añadir un registro a la tabla</p>

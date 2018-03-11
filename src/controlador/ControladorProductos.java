@@ -43,16 +43,9 @@ public class ControladorProductos extends HttpServlet {
 		modeloProductos=new ModeloProductos(miPool);
 		
 		}catch(Exception e){
-			throw new ServletException(e);
-			
+			throw new ServletException(e);	
 		}
-		
 	}
-
-
-
-
-
 
 	/**
      * @see HttpServlet#HttpServlet()
@@ -87,10 +80,18 @@ public class ControladorProductos extends HttpServlet {
 		
 		switch(elParametro) {
 		case "listar":	obtenerProductos(request, response);break;
-		case "instruccion": agregarProductos(request, response);break;
+		case "insertarBBDD": agregarProductos(request, response);break;
 		case "cargar": try {
 				cargaProductos(request, response);
-			} catch (Exception e1) {e1.printStackTrace();			}
+			} catch (Exception e1) {e1.printStackTrace();} break;
+		
+		case "actualizarBBDD":try {
+				actualizarProductos(request,response);
+			} catch (Exception e1) {
+				e1.printStackTrace();
+			}
+
+		 break;
 		default: try {throw new Exception(); } catch (Exception e) {e.printStackTrace();	}
 		//default: obtenerProductos(request, response);break;
 		}
@@ -100,6 +101,36 @@ public class ControladorProductos extends HttpServlet {
 
 
 	
+	private void actualizarProductos(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
+		//leer datos que vienen del formulario de actualizar
+	String CodArticlulo=request.getParameter("element_1");
+	String Seccion=request.getParameter("element_2");
+	String NombreArticulo=request.getParameter("element_3");
+	
+	  SimpleDateFormat formatoFecha=new SimpleDateFormat("yyyy-MM-dd");
+	  Date Fecha=null;
+	try {
+	Fecha=formatoFecha.parse(request.getParameter("element_4"));
+	}catch (ParseException e) {e.printStackTrace();}
+	
+	double Precio=Double.parseDouble(request.getParameter("element_5"));
+	String Importado=request.getParameter("element_6");
+	String PaisOrigen=request.getParameter("element_7");
+		
+		//crear un objeto de tipo producto con la info del formulario
+		
+	Productos productoActualizado=new Productos(CodArticlulo, Seccion, NombreArticulo, Precio, Fecha, Importado, PaisOrigen);
+		//actualizar la BBDD con la info del obj Producto
+		
+	modeloProductos.actualizarProducto(productoActualizado);
+	
+		//volver al listado con la info actualizada
+		
+	obtenerProductos(request, response);	
+		
+	}
+
 	private void cargaProductos(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		//leer el codigo articulo que viene del listado--260

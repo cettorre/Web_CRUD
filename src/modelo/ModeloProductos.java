@@ -141,5 +141,11 @@ String sql="INSERT INTO PRODUCTOS (CÓDIGOARTÍCULO, SECCIÓN, NOMBREARTÍCULO, 
 		
 		return elProducto;
 	}
+
+
+	public void actualizarProducto(Productos productoActualizado) {
+		
+		
+	}
 	
 }

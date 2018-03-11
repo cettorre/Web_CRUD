@@ -119,7 +119,7 @@ String sql="INSERT INTO PRODUCTOS (CÓDIGOARTÍCULO, SECCIÓN, NOMBREARTÍCULO, 
 		miPreparedStatement=miConnection.prepareStatement(sql);
 		miPreparedStatement.setString(1, cArticulo);
 		//ejecutar consulta
-		miPreparedStatement.executeQuery();
+		miResultSet =miPreparedStatement.executeQuery();
 		
 		//obtener datos respuesta
 		if(miResultSet.next()) {

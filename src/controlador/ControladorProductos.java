@@ -1,6 +1,7 @@
 package controlador;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -80,7 +81,13 @@ public class ControladorProductos extends HttpServlet {
 		
 		switch(elParametro) {
 		case "listar":	obtenerProductos(request, response);break;
-		case "insertarBBDD": agregarProductos(request, response);log(elParametro+"**********************"); break;
+		case "insertarBBDD": try {
+				agregarProductos(request, response);
+			} catch (SQLException e2) {
+				// TODO Auto-generated catch block
+				e2.printStackTrace();
+			}log(elParametro+"**********************"); break;
+
 		case "cargar": try {
 				cargaProductos(request, response);
 			} catch (Exception e1) {e1.printStackTrace();} break;
@@ -90,8 +97,8 @@ public class ControladorProductos extends HttpServlet {
 			} catch (Exception e1) {
 				e1.printStackTrace();
 			}
-
-		 break;
+		break;
+		 
 		case "eliminar": try {
 				eliminarProducto(request,response);
 			} catch (Exception e1) {
@@ -177,7 +184,7 @@ public class ControladorProductos extends HttpServlet {
 
 
 
-	private void agregarProductos(HttpServletRequest request, HttpServletResponse response) {
+	private void agregarProductos(HttpServletRequest request, HttpServletResponse response) throws SQLException {
 		
 			//leer info que llega desde el formulario
 		String CodArticlulo=request.getParameter("element_1");

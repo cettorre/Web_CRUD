@@ -33,7 +33,7 @@ public class ModeloProductos {
 		Connection miConexion=null;
 		Statement miStatement =null;
 		ResultSet miResultset=null;
-		
+		try {
 		miConexion=origenDatos.getConnection();
 		String instruccionSql="SELECT * FROM PRODUCTOS";
 		miStatement=miConexion.createStatement();
@@ -52,13 +52,17 @@ public class ModeloProductos {
 			
 			productos.add(temProd);
 		}
-		
+		}catch (Exception e) {
+            e.printStackTrace();}finally {
+            	miStatement.close();
+    			miConexion.close();
+			}
 		return productos; 
 		
 	}
 
 
-	public void agregarElNuevoProducto(Productos nuevoProducto) {
+	public void agregarElNuevoProducto(Productos nuevoProducto) throws SQLException {
 		//obtener conexion BBDD
 		
 	Connection miConexion=null;
@@ -91,11 +95,14 @@ String sql="INSERT INTO PRODUCTOS (CÓDIGOARTÍCULO, SECCIÓN, NOMBREARTÍCULO, 
 		//ejecutar instruccion SQL
 		miStatement.execute();
 			}catch(Exception e) {e.printStackTrace();
+		}finally {
+			miStatement.close();
+			miConexion.close();
 		}
 	}
 
 
-	public Productos getProducto(String codigoArticulo) {
+	public Productos getProducto(String codigoArticulo) throws SQLException {
 		Productos elProducto=null;
 		Connection miConnection=null;
 		PreparedStatement miPreparedStatement=null;
@@ -129,13 +136,16 @@ String sql="INSERT INTO PRODUCTOS (CÓDIGOARTÍCULO, SECCIÓN, NOMBREARTÍCULO, 
 		}
 		
 
-	}catch(Exception e) {e.printStackTrace();}
+	}catch(Exception e) {e.printStackTrace();}finally {
+		miPreparedStatement.close();
+		miConnection.close();
+	}
 		
 		return elProducto;
 	}
 
 
-	public void actualizarProducto(Productos productoActualizado) {
+	public void actualizarProducto(Productos productoActualizado) throws SQLException {
 		//conexion
 		Connection miConnection=null;
 		PreparedStatement miStatement=null;
@@ -169,11 +179,15 @@ String sql="INSERT INTO PRODUCTOS (CÓDIGOARTÍCULO, SECCIÓN, NOMBREARTÍCULO, 
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}	
+		}	finally {
+			miStatement.close();
+			miConnection.close();
+			
+		}
 	}
 
 
-	public void eliminarProducto(String productoEliminado) {
+	public void eliminarProducto(String productoEliminado) throws Exception{
 		Connection miConnection=null;
 		PreparedStatement miStatement=null;
 		try {
@@ -190,7 +204,10 @@ String sql="INSERT INTO PRODUCTOS (CÓDIGOARTÍCULO, SECCIÓN, NOMBREARTÍCULO, 
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}	
+		}	finally {
+			miStatement.close();
+			miConnection.close();
+		}
 				
 	}
 }

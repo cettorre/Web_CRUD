@@ -92,6 +92,13 @@ public class ControladorProductos extends HttpServlet {
 			}
 
 		 break;
+		case "eliminar": try {
+				eliminarProducto(request,response);
+			} catch (Exception e1) {
+					e1.printStackTrace();
+			} break;
+		 
+		 
 		default: try {throw new Exception(); } catch (Exception e) {e.printStackTrace();	}
 		//default: obtenerProductos(request, response);break;
 		}
@@ -101,6 +108,13 @@ public class ControladorProductos extends HttpServlet {
 
 
 	
+	private void eliminarProducto(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		String codigoArticulo=request.getParameter("CArticulo");
+		//Productos productoActualizado=new Productos(codigoArticulo);
+		modeloProductos.eliminarProducto(codigoArticulo);
+		obtenerProductos(request, response);
+	}
+
 	private void actualizarProductos(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		//leer datos que vienen del formulario de actualizar

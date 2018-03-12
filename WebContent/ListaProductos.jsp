@@ -89,11 +89,17 @@ table{
 
 <c:forEach var="tempProd" items="${LISTAPRODUCTOS}">
 
-<!--!LINK PARA CADA PRODUCTO CON SU CAMPO CLAVE -->
+<!--!LINK ACTUALIZAR PARA CADA PRODUCTO CON SU CAMPO CLAVE -->
 <c:url var="linkTemp" value="ControladorProductos">
 	<c:param name="instruccion" value="cargar"></c:param>
 	<c:param name="CArticulo" value="${tempProd.cArt}"></c:param>
 </c:url>
+<!--!LINK ELIMINAR PARA CADA PRODUCTO CON SU CAMPO CLAVE -->
+<c:url var="linkTempEliminar" value="ControladorProductos">
+	<c:param name="instruccion" value="eliminar"></c:param>
+	<c:param name="CArticulo" value="${tempProd.cArt}"></c:param>
+</c:url>
+
 
 
 <tr>
@@ -104,7 +110,7 @@ table{
 <td class="filas">${tempProd.precio}</td>
 <td class="filas">${tempProd.importado}</td>
 <td class="filas">${tempProd.pOrigen}</td>
-<td class="filas"><a href="${linkTemp }">actualizar</a></td>
+<td class="filas"><a href="${linkTemp }">Actualizar</a>&nbsp;&nbsp;<a href="${linkTempEliminar}">Eliminar </a> </td>
 </tr>
 
 </c:forEach>

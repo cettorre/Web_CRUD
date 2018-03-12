@@ -31,7 +31,14 @@ public class Productos {
 		this.importado = importado;
 		this.pOrigen = pOrigen;
 	}
+	
+	public Productos(String cArt) {
+		super();
+		this.cArt = cArt;
+	}
 
+	
+	
 	public String getcArt() {
 		return cArt;
 	}

@@ -171,4 +171,26 @@ String sql="INSERT INTO PRODUCTOS (CÓDIGOARTÍCULO, SECCIÓN, NOMBREARTÍCULO, 
 			e.printStackTrace();
 		}	
 	}
+
+
+	public void eliminarProducto(String productoEliminado) {
+		Connection miConnection=null;
+		PreparedStatement miStatement=null;
+		try {
+			miConnection=origenDatos.getConnection();
+		//sentencia
+			String sql="DELETE FROM PRODUCTOS WHERE CÓDIGOARTÍCULO=?";
+		//prepared stat
+			miStatement=miConnection.prepareStatement(sql);
+			miStatement.setString(1, productoEliminado);
+		
+		//ejecutar instruccion
+			
+			miStatement.execute();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}	
+				
+	}
 }

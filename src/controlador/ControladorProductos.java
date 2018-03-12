@@ -80,7 +80,7 @@ public class ControladorProductos extends HttpServlet {
 		
 		switch(elParametro) {
 		case "listar":	obtenerProductos(request, response);break;
-		case "insertarBBDD": agregarProductos(request, response);break;
+		case "insertarBBDD": agregarProductos(request, response);log(elParametro+"**********************"); break;
 		case "cargar": try {
 				cargaProductos(request, response);
 			} catch (Exception e1) {e1.printStackTrace();} break;
@@ -104,7 +104,8 @@ public class ControladorProductos extends HttpServlet {
 	private void actualizarProductos(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		//leer datos que vienen del formulario de actualizar
-	String CodArticlulo=request.getParameter("element_1");
+	//String CodArticlulo=request.getParameter("element_1");//null!!!
+		String CodArticulo=request.getParameter("CArt");	
 	String Seccion=request.getParameter("element_2");
 	String NombreArticulo=request.getParameter("element_3");
 	
@@ -120,14 +121,16 @@ public class ControladorProductos extends HttpServlet {
 		
 		//crear un objeto de tipo producto con la info del formulario
 		
-	Productos productoActualizado=new Productos(CodArticlulo, Seccion, NombreArticulo, Precio, Fecha, Importado, PaisOrigen);
-		//actualizar la BBDD con la info del obj Producto
+	Productos productoActualizado=new Productos(CodArticulo, Seccion, NombreArticulo, Precio, Fecha, Importado, PaisOrigen);
+	log(productoActualizado.toString());	
+	//actualizar la BBDD con la info del obj Producto
 		
 	modeloProductos.actualizarProducto(productoActualizado);
 	
 		//volver al listado con la info actualizada
 		
-	obtenerProductos(request, response);	
+	obtenerProductos(request, response);
+		
 		
 	}
 
